@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import './App.css';
 
 function App() {
@@ -78,7 +78,7 @@ function App() {
                 type="text"
                 placeholder="Type the word here.."
                 id="inp-word"
-                value={inp}
+                value={inp} 
                 onChange={handelInput}
             />
             <button id="search-btn" onClick={handelClick}>Search</button>
