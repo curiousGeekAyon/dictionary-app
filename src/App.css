@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*:not(i) {
+  font-family: "Poppins", sans-serif;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: #4123c4;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  background-color: #ffffff;
+  width: 90vmin;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 80px 50px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(38, 33, 61, 0.2);
+}
+.search-box {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
-
-.App-link {
-  color: #61dafb;
+.search-box input {
+  padding: 5px;
+  width: 70%;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #816cdf;
+  font-size: 16px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-box button {
+  padding: 15px 0;
+  width: 25%;
+  background-color: #8874e2;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.result {
+  position: relative;
+}
+.result h3 {
+  font-size: 30px;
+  color: #1f194c;
+}
+.result .word {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+}
+.result button {
+  background-color: transparent;
+  color: #ae9cff;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+.result .details {
+  display: flex;
+  gap: 10px;
+  color: #b3b6d4;
+  margin: 5px 0 20px 0;
+  font-size: 14px;
+}
+.word-meaning {
+  color: #575a7b;
+}
+.word-example {
+  color: #575a7b;
+  font-style: italic;
+  border-left: 5px solid #ae9cff;
+  padding-left: 20px;
+  margin-top: 30px;
+}
+/* .error {
+  margin-top: 80px;
+  text-align: center;
+} */
+#soundButton { 
+  opacity: 0;
 }
