@@ -3,48 +3,46 @@ import './App.css';
 
 function App() {
   const[inp,setInp]=useState("");
-  const[partsOFspeech,setPos]=useState("");
-  const[pohnetic,setPhonetic]=useState("");
-  const[meaning,setMeaning]=useState("");
-  const[example,setExample]=useState("");
+//   const[partsOFspeech,setPos]=useState("");
+//   const[pohnetic,setPhonetic]=useState("");
+//   const[meaning,setMeaning]=useState("");
+//   const[example,setExample]=useState("");
   const[soundURL,setSoundURL]=useState("");
   const[name,setName]=useState("");
   const[flag,setFlag]=useState(false);
+  const[dictionayD,setDicD]=useState({});
 //   const[url,setUrl]=useState("");
  function handelInput(e)
      {
         setInp(e.target.value);
      }
      function handelClick(){
-        console.log(inp);
         let url=(`https://api.dictionaryapi.dev/api/v2/entries/en/${inp}`);
-        console.log(url);
+        // console.log(url);
         fetch(url).then((response)=>(
            response.json()
         )).then((data)=>{
-            console.log(data);
+            // console.log(data);
             if(data.title)
               {
-                setName(data.message);
-                setPos("");
-                // setName(inp);
-                setPhonetic("");
-                setMeaning("");
-                setExample("");
-                setSoundURL("");
+                setDicD(data);
+                setName(dictionayD.message);
+                // setPos("");
+                // // setName(inp);
+                // setPhonetic("");
+                // setMeaning("");
+                // setExample("");
+                // setSoundURL("");
                 document.getElementById("Name").style.color='red';
                 document.getElementById("soundButton").style.opacity=0;
               }
               else{
+                setDicD(data[0]);
                 document.getElementById("Name").style.color='black';
-            setPos(data[0].meanings[0].partOfSpeech);
-            setName(inp);
-            setPhonetic(data[0].phonetic);
-            setMeaning(data[0].meanings[0].definitions[0].definition);
-            setExample(data[0].meanings[0].definitions[0].example);
-            if(data[0].phonetics.length > 0&&data[0].phonetics[0].audio!=='')
+                setName(inp);
+            if(dictionayD.phonetics.length > 0&&dictionayD.phonetics[0].audio!=='')
               {
-                setSoundURL(data[0].phonetics[0].audio);
+                setSoundURL(dictionayD.phonetics[0].audio);
                 setFlag(true);
                 document.getElementById("soundButton").style.opacity=1;
               }
@@ -83,6 +81,7 @@ function App() {
             />
             <button id="search-btn" onClick={handelClick}>Search</button>
         </div>
+        { dictionayD.meanings[0].definitions[0].definition?
         <div className="result" id="result">
         <div className="word">
                     <h3 id="Name">{name}</h3>
@@ -91,16 +90,21 @@ function App() {
                     </button>
                 </div>
                 <div className="details">
-                    <p>{partsOFspeech}</p>
-                    <p>{pohnetic}</p>
+                    <p>{dictionayD.meanings[0].partOfSpeech}</p>
+                    <p>{dictionayD.phonetic}</p>
                 </div>
                 <p className="word-meaning">
-                   {meaning}
+                   {dictionayD.meanings[0].definitions[0].definition}
                 </p>
                 <p className="word-example">
-                   {example}
+                   {dictionayD.meanings[0].definitions[0].example}
                 </p>
-        </div>
+         </div>:<div className="result" id="result">
+        <div className="word">
+                    <h3 id="Name">{name}</h3>
+                    </div>
+                    </div>
+        }
     </div>
 </div>
   );
