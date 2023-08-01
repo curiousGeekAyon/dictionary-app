@@ -108,7 +108,6 @@ function App() {
           </div>
         )}
       </div>
-     <h1>faltu project</h1>
     </div>
   );
 }
